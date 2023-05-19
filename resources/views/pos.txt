@@ -1,0 +1,346 @@
+<template>
+    <div>
+     
+    <div>
+      <div class="card-header"> Point of sale </div>
+
+<div class="row">
+        <div class="card col-lg-5">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            product </div>
+
+   <form>
+          <div class="card-body">
+           
+               
+         
+              
+              <table class="table table-sm table-striped" >
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">name</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">unit</th>
+                    <th scope="col">Total</th>    
+                    <th>Action</th>
+          
+                  </tr>
+                </thead>
+               
+                <tbody>
+                 <tr>
+                   <td>Napa</td>
+                   <td>10</td>
+                   <td>4200</td>
+                   <td>120000</td>
+                   <td align="center"><a href="" class="btn btn-sm btn-danger">X</a></td>
+                 </tr>
+                
+                
+                   
+                
+              
+                 
+                </tbody>
+
+
+              </table>
+
+              <hr>
+           
+          </div>
+
+
+          <div class="card-footer">
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">Total Quantity:
+                <strong> 12 </strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">Sub Total:
+                <strong> 1100 </strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">vat:
+                <strong> 5% </strong>
+              </li>
+               <li class="list-group-item d-flex justify-content-between align-items-center">Total:
+                <strong> 120000 </strong>
+              </li>
+              
+
+            </ul>
+
+            <br>
+
+            <label>pay</label>
+            <input type="" class="form-control">
+
+            <label>Due</label>
+            <input type="" class="form-control">
+            
+              <label>pay by</label>
+              <select class="form-control">
+                <option>Handcash</option>
+                <option>Bkash</option>
+                <option>GiftCart</option>
+              </select>
+<br>
+              <button type="submit" class="btn btn-success">Submit</button>
+
+          </div>
+          </form>
+       
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+         <div class="card col-lg-7">
+        
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+        
+             </div>
+
+
+          <div class="card-body">
+            <div class="table-responsive">
+              
+          
+
+ <!-- category product start-->
+
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">All Product</button>
+  </li>
+
+  <li v-for="category in categorys" :key="category.id" class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" @click="subProduct(category.id)">{{category.cat_name}}</button>
+  </li>
+</ul>
+
+
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+    
+     <div class="card-body">
+     <div class="card-body">
+        <input type="text" placeholder="Search" v-model="searchTerm" class="form-control">
+
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="product,key in filterSearch" :key="product.id">
+            <br>
+
+            <a href="">
+                
+                <div class="card" style="width:9rem; height:180px">
+                  <img :src="product.image" class="card-img-top " style="height:100px ; width: 100px;">
+
+                  <div class="card-body">
+                  <small class="card-title">{{product.product_name}}</small>
+                  <br>
+                  <span v-if="product.stock_quantity>=1" class="badge badge-success">Availble ({{product.stock_quantity}})</span>
+                  <span v-else="" class="badge badge-danger">Stock out</span>
+                </div>
+                </div>
+
+            </a>
+            
+
+          </div>
+
+        </div>
+
+     </div>
+
+
+</div>
+
+  </div>
+
+
+<!-- category wise -->
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+
+ 
+    
+  <input type="text" placeholder="Search" v-model="getsearchTerm" class="form-control">
+<br>
+    
+          <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="getproduct in getfilterSearch" :key="getproduct.id">
+              <div class="row">
+
+            <a href="">
+                
+                <div class="card" style="width:9rem; height:180px">
+                  <img :src="getproduct.image" class="card-img-top " style="height:100px ; width: 100px;">
+
+                  <div class="card-body">
+                  <small class="card-title">{{getproduct.product_name}}</small>
+                  <br>
+                  <span v-if="getproduct.stock_quantity>=1" class="badge badge-success">Availble ({{getproduct.stock_quantity}})</span>
+                  <span v-else="" class="badge badge-danger">Stock out</span>
+                </div>
+                </div>
+
+            </a>
+            </div>
+
+       
+
+
+
+  </div>
+
+  <!-- category wise -->
+
+
+
+</div>
+           
+
+            <!-- category product end-->
+
+
+            </div>
+          </div>
+
+         
+
+
+         
+       
+        </div>
+
+
+
+
+      </div>
+      </div>
+    </div>
+  
+    </div>
+</template>
+
+
+<script>
+
+export default{
+
+
+  data(){
+    return {
+      products:[],
+      searchTerm:'',
+      getsearchTerm:'',
+      categorys:'',
+      getproducts:[],
+
+     
+    }
+
+  },
+
+  computed:{
+    filterSearch(){
+
+      return this.products.filter(product=>{
+       return  product.product_name.match(this.searchTerm);
+      
+    
+
+      })
+    },
+
+       getfilterSearch(){
+
+      return this.getproducts.filter(getproduct=>{
+       return  getproduct.product_name.match(this.getsearchTerm);
+      
+    
+
+      })
+    },
+
+
+
+  },
+
+  methods:{
+
+    allproduct(){
+      axios.get("/api/product/")
+      .then(({data})=>(this.products=data))
+      .catch()
+    
+
+
+    },
+
+ 
+    allCategory(){
+      axios.get("/api/category/")
+      .then(({data})=>(this.categorys=data))
+      .catch()
+    
+
+
+    },
+
+
+
+    subProduct(id){
+
+        axios.get("/api/getting/product/"+id)
+      .then(({data})=>(this.getproducts=data))
+      .catch()
+
+        },
+
+
+
+  },
+  created(){
+    this.allproduct();
+    this.allCategory();
+    this.subProduct();
+  }
+ 
+ }
+
+</script>
+
+
+<style>
+  
+</style>
+
+
+
+  public function store(Request $request,$id)
+    {
+        
+        $product=DB::table('products')->where('id',$id)->first();
+
+        $data=array();
+        $data['product_id']=$id;
+        $data['product_name']=$product->product_name;
+        $data['product_quantity']=1;
+        $data['product_price']=$product->selling_price;
+        $data['sub_total']=$product->selling_price;
+        
+        return response()->json($data); 
+          
+           
+    }
